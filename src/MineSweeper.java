@@ -1,10 +1,8 @@
 import field.MineField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import menu.FlagCounter;
-import menu.GameState;
-import menu.GameStates;
-import menu.GameTimer;
+import javafx.scene.text.Font;
+import menu.*;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -21,6 +19,9 @@ public class MineSweeper extends Application {
         //Root
         BorderPane root = new BorderPane();
 
+        //Font
+        Font.loadFont(MineSweeper.class.getResource("res/Gameplay.ttf").toExternalForm(), 30);
+
         //Top
         GameTimer.init();
         FlagCounter.init();
@@ -32,8 +33,10 @@ public class MineSweeper extends Application {
 
         //Center
         MineField.init(Settings.CELL_COUNT);
+        Endscreen.init();
         Pane mineFieldPane = new Pane();
         mineFieldPane.getChildren().addAll(MineField.getCells());
+        mineFieldPane.getChildren().add(Endscreen.getEndscreen());
 
         //Merge
         root.setTop(top);
@@ -47,7 +50,9 @@ public class MineSweeper extends Application {
             if(e.getCode() == KeyCode.R) {
                 mineFieldPane.getChildren().clear();
                 MineField.init(Settings.CELL_COUNT);
+                Endscreen.hide();
                 mineFieldPane.getChildren().addAll(MineField.getCells());
+                mineFieldPane.getChildren().add(Endscreen.getEndscreen());
                 FlagCounter.reset();
                 GameTimer.reset();
                 GameState.STATE = GameStates.READY;

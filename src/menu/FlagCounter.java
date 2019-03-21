@@ -20,7 +20,7 @@ public class FlagCounter {
     public static void init() {
 
         flagCounterLabel = new Label(Integer.toString(counter));
-        flagCounterLabel.setFont(new Font("Arial", Settings.FONT_SIZE));
+        flagCounterLabel.setFont(new Font("Arial", Settings.MENU_FONT_SIZE));
         flagCounterLabel.setTextFill(Color.WHITE);
 
         ImageView flagCounterIcon = new ImageView(new Image("res/flag.png"));
@@ -50,6 +50,12 @@ public class FlagCounter {
 
         counter = Settings.BOMB_COUNT;
         flagCounterLabel.setText(Integer.toString(counter));
+    }
+
+
+    public static boolean isEmpty() {
+
+        return counter == 0;
     }
 
 

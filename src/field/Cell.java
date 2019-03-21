@@ -9,10 +9,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import menu.FlagCounter;
-import menu.GameState;
-import menu.GameStates;
-import menu.GameTimer;
+import menu.*;
 import settings.Settings;
 
 class Cell extends StackPane {
@@ -48,36 +45,19 @@ class Cell extends StackPane {
     }
 
 
-    int getX() {
-
-        return this.x;
-    }
-
-
-    int getY() {
-
-        return this.y;
-    }
-
-
-    int getValue() {
-
-        return this.value;
-    }
-
-
-    boolean isUncovered() {
-
-        return this.isUncovered;
-    }
-
-
     void uncover() {
 
         Color backgroundColor = this.isDark ? Settings.BEIGE : Settings.LIGHT_BEIGE;
         this.setBackground(new Background(new BackgroundFill(backgroundColor, CornerRadii.EMPTY, Insets.EMPTY)));
         addIcon();
         this.isUncovered = true;
+
+        if(MineField.allCellsAreUncovered()) {
+            GameTimer.stop();
+            GameState.STATE = GameStates.GAMEOVER;
+            Endscreen.setText("You Won");
+            Endscreen.show();
+        }
     }
 
 
@@ -109,9 +89,11 @@ class Cell extends StackPane {
             this.isFlagged = false;
             FlagCounter.increase();
         } else {
-            this.getChildren().add(this.flagIcon);
-            this.isFlagged = true;
-            FlagCounter.decrease();
+            if(!FlagCounter.isEmpty()) {
+                this.getChildren().add(this.flagIcon);
+                this.isFlagged = true;
+                FlagCounter.decrease();
+            }
         }
     }
 
@@ -166,6 +148,8 @@ class Cell extends StackPane {
                         MineField.uncoverAllBombs();
                         GameTimer.stop();
                         GameState.STATE = GameStates.GAMEOVER;
+                        Endscreen.setText("Game Over");
+                        Endscreen.show();
                     }
                     else
                         uncover();
@@ -190,6 +174,30 @@ class Cell extends StackPane {
                 this.setBackground(new Background(new BackgroundFill(this.backgroundColor, CornerRadii.EMPTY, Insets.EMPTY)));
             }
         });
+    }
+
+
+    int getX() {
+
+        return this.x;
+    }
+
+
+    int getY() {
+
+        return this.y;
+    }
+
+
+    int getValue() {
+
+        return this.value;
+    }
+
+
+    boolean isUncovered() {
+
+        return this.isUncovered;
     }
 
 }

@@ -1,6 +1,9 @@
 package calc;
 
 import settings.Settings;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class MineFieldMatrix {
@@ -24,7 +27,9 @@ public class MineFieldMatrix {
             int x = this.random.nextInt(Settings.CELL_COUNT);
             int y = this.random.nextInt(Settings.CELL_COUNT);
 
-            placeBomb(x, y);
+
+            if(this.matrix[x][y] != -1)
+                placeBomb(x, y);
         }
 
         return this.matrix;
@@ -36,22 +41,24 @@ public class MineFieldMatrix {
         this.matrix[x][y] = -1;
         this.bombsPlaced++;
 
-        checkInBound(x, y-1);
-        checkInBound(x+1, y-1);
-        checkInBound(x+1, y);
-        checkInBound(x+1, y+1);
-        checkInBound(x, y+1);
-        checkInBound(x-1, y+1);
-        checkInBound(x-1, y);
-        checkInBound(x-1, y-1);
+        increaseValueOfNeighbor(x, y-1);
+        increaseValueOfNeighbor(x+1, y-1);
+        increaseValueOfNeighbor(x+1, y);
+        increaseValueOfNeighbor(x+1, y+1);
+        increaseValueOfNeighbor(x, y+1);
+        increaseValueOfNeighbor(x-1, y+1);
+        increaseValueOfNeighbor(x-1, y);
+        increaseValueOfNeighbor(x-1, y-1);
     }
 
 
-    private void checkInBound(int x, int y) {
+    private void increaseValueOfNeighbor(int x, int y) {
 
         try {
-            if(this.matrix[x][y] != -1) this.matrix[x][y]++;
-        } catch(ArrayIndexOutOfBoundsException ignored){}
+            if(this.matrix[x][y] != -1)
+                this.matrix[x][y]++;
+        }
+        catch(ArrayIndexOutOfBoundsException ignored){}
     }
 
 }

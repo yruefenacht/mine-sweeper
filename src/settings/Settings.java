@@ -13,8 +13,9 @@ public class Settings {
     public static final int SCENE_WIDTH = CELL_COUNT * CELL_SIZE;
     public static final int SCENE_HEIGHT = CELL_COUNT * CELL_SIZE + TOP;
     public static final double ICON_SIZE = 40;
-    public static final int FONT_SIZE = 30;
+    public static final int MENU_FONT_SIZE = 30;
     public static final int CELL_FONT_SIZE = 20;
+    public static final int END_FONT_SIZE = 50;
     public static final int PADDING_ICON = 5;
     public static final int PADDING_MENU = 30;
 

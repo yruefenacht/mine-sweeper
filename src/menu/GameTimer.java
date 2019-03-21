@@ -26,7 +26,7 @@ public class GameTimer {
     public static void init() {
 
         timerLabel = new Label("0");
-        timerLabel.setFont(new Font("Arial", Settings.FONT_SIZE));
+        timerLabel.setFont(new Font("Arial", Settings.MENU_FONT_SIZE));
         timerLabel.setTextFill(Color.WHITE);
         timer = new Timeline(new KeyFrame(
             Duration.millis(1000),
