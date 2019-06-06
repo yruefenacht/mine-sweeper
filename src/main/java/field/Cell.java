@@ -36,7 +36,7 @@ class Cell extends StackPane {
         this.backgroundColor = this.isDark ? Settings.GREEN : Settings.LIGHT_GREEN;
         this.setBackground(new Background(new BackgroundFill(this.backgroundColor, CornerRadii.EMPTY, Insets.EMPTY)));
         this.setAlignment(Pos.CENTER);
-        this.flagIcon = new ImageView(new Image(this.getClass().getResourceAsStream("../flag.png")));
+        this.flagIcon = new ImageView(new Image(this.getClass().getClassLoader().getResourceAsStream("flag.png")));
         this.flagIcon.setFitHeight(Settings.ICON_SIZE / 2);
         this.flagIcon.setFitWidth(Settings.ICON_SIZE / 2);
 
@@ -55,8 +55,8 @@ class Cell extends StackPane {
         if(MineField.allCellsAreUncovered()) {
             GameTimer.stop();
             GameState.STATE = GameStates.GAMEOVER;
-            Endscreen.setText("You Won");
-            Endscreen.show();
+            EndScreen.setText("You Won");
+            EndScreen.show();
         }
     }
 
@@ -65,7 +65,9 @@ class Cell extends StackPane {
 
         if(value < 0) {
 
-            ImageView bombIcon = new ImageView(new Image(this.getClass().getResourceAsStream("../explosion.png")));
+            ImageView bombIcon = new ImageView(
+                new Image(this.getClass().getClassLoader().getResourceAsStream("explosion.png"))
+            );
             bombIcon.setFitWidth(Settings.ICON_SIZE / 2);
             bombIcon.setFitHeight(Settings.ICON_SIZE / 2);
             this.getChildren().add(bombIcon);
@@ -148,8 +150,8 @@ class Cell extends StackPane {
                         MineField.uncoverAllBombs();
                         GameTimer.stop();
                         GameState.STATE = GameStates.GAMEOVER;
-                        Endscreen.setText("Game Over");
-                        Endscreen.show();
+                        EndScreen.setText("Game Over");
+                        EndScreen.show();
                     }
                     else
                         uncover();
@@ -164,14 +166,18 @@ class Cell extends StackPane {
         this.setOnMouseEntered(e -> {
 
             if(!this.isUncovered) {
-                this.setBackground(new Background(new BackgroundFill(Settings.CELL_HOVER, CornerRadii.EMPTY, Insets.EMPTY)));
+                this.setBackground(
+                    new Background(new BackgroundFill(Settings.CELL_HOVER, CornerRadii.EMPTY, Insets.EMPTY))
+                );
             }
         });
 
         this.setOnMouseExited(e -> {
 
             if(!this.isUncovered) {
-                this.setBackground(new Background(new BackgroundFill(this.backgroundColor, CornerRadii.EMPTY, Insets.EMPTY)));
+                this.setBackground(
+                    new Background(new BackgroundFill(this.backgroundColor, CornerRadii.EMPTY, Insets.EMPTY))
+                );
             }
         });
     }

@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import settings.*;
 
-public class Endscreen {
+public class EndScreen {
 
     private static Label endscreen;
 

@@ -20,7 +20,7 @@ public class MineSweeper extends Application {
         BorderPane root = new BorderPane();
 
         //Font
-        Font.loadFont(MineSweeper.class.getResource("Gameplay.ttf").toExternalForm(), 30);
+        Font.loadFont(MineSweeper.class.getClassLoader().getResource("Gameplay.ttf").toExternalForm(), 30);
 
         //Top
         GameTimer.init();
@@ -33,10 +33,10 @@ public class MineSweeper extends Application {
 
         //Center
         MineField.init(Settings.CELL_COUNT);
-        Endscreen.init();
+        EndScreen.init();
         Pane mineFieldPane = new Pane();
         mineFieldPane.getChildren().addAll(MineField.getCells());
-        mineFieldPane.getChildren().add(Endscreen.getEndscreen());
+        mineFieldPane.getChildren().add(EndScreen.getEndscreen());
 
         //Merge
         root.setTop(top);
@@ -50,9 +50,9 @@ public class MineSweeper extends Application {
             if(e.getCode() == KeyCode.R) {
                 mineFieldPane.getChildren().clear();
                 MineField.init(Settings.CELL_COUNT);
-                Endscreen.hide();
+                EndScreen.hide();
                 mineFieldPane.getChildren().addAll(MineField.getCells());
-                mineFieldPane.getChildren().add(Endscreen.getEndscreen());
+                mineFieldPane.getChildren().add(EndScreen.getEndscreen());
                 FlagCounter.reset();
                 GameTimer.reset();
                 GameState.STATE = GameStates.READY;
@@ -61,7 +61,7 @@ public class MineSweeper extends Application {
 
         //Stage
         primaryStage.setTitle("MineSweeper");
-        primaryStage.getIcons().add(new Image(MineSweeper.class.getResourceAsStream("app-icon.png")));
+        primaryStage.getIcons().add(new Image(MineSweeper.class.getClassLoader().getResourceAsStream("app-icon.png")));
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
