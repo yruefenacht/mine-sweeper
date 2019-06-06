@@ -1,7 +1,6 @@
 package settings;
 
 import javafx.scene.paint.Color;
-
 import java.util.Map;
 
 public class Settings {

@@ -10,7 +10,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import menu.*;
-import settings.Settings;
+import settings.*;
 
 class Cell extends StackPane {
 
@@ -36,7 +36,7 @@ class Cell extends StackPane {
         this.backgroundColor = this.isDark ? Settings.GREEN : Settings.LIGHT_GREEN;
         this.setBackground(new Background(new BackgroundFill(this.backgroundColor, CornerRadii.EMPTY, Insets.EMPTY)));
         this.setAlignment(Pos.CENTER);
-        this.flagIcon = new ImageView(new Image("res/flag.png"));
+        this.flagIcon = new ImageView(new Image(this.getClass().getResourceAsStream("../flag.png")));
         this.flagIcon.setFitHeight(Settings.ICON_SIZE / 2);
         this.flagIcon.setFitWidth(Settings.ICON_SIZE / 2);
 
@@ -65,7 +65,7 @@ class Cell extends StackPane {
 
         if(value < 0) {
 
-            ImageView bombIcon = new ImageView(new Image("res/explosion.png"));
+            ImageView bombIcon = new ImageView(new Image(this.getClass().getResourceAsStream("../explosion.png")));
             bombIcon.setFitWidth(Settings.ICON_SIZE / 2);
             bombIcon.setFitHeight(Settings.ICON_SIZE / 2);
             this.getChildren().add(bombIcon);

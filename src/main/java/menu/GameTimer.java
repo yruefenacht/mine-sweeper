@@ -33,7 +33,7 @@ public class GameTimer {
             e -> update()));
         timer.setCycleCount(Animation.INDEFINITE);
 
-        ImageView timerIcon = new ImageView(new Image("res/alarm-clock.png"));
+        ImageView timerIcon = new ImageView(new Image(GameTimer.class.getResourceAsStream("../alarm-clock.png")));
         timerIcon.setFitWidth(Settings.ICON_SIZE);
         timerIcon.setFitHeight(Settings.ICON_SIZE);
 

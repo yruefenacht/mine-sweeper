@@ -20,7 +20,7 @@ public class MineSweeper extends Application {
         BorderPane root = new BorderPane();
 
         //Font
-        Font.loadFont(MineSweeper.class.getResource("res/Gameplay.ttf").toExternalForm(), 30);
+        Font.loadFont(MineSweeper.class.getResource("Gameplay.ttf").toExternalForm(), 30);
 
         //Top
         GameTimer.init();

@@ -23,7 +23,7 @@ public class FlagCounter {
         flagCounterLabel.setFont(new Font("Arial", Settings.MENU_FONT_SIZE));
         flagCounterLabel.setTextFill(Color.WHITE);
 
-        ImageView flagCounterIcon = new ImageView(new Image("res/flag.png"));
+        ImageView flagCounterIcon = new ImageView(new Image(FlagCounter.class.getResourceAsStream("../flag.png")));
         flagCounterIcon.setFitWidth(Settings.ICON_SIZE);
         flagCounterIcon.setFitHeight(Settings.ICON_SIZE);
 

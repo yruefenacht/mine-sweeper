@@ -1,9 +1,6 @@
 package calc;
 
 import settings.Settings;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 public class MineFieldMatrix {
